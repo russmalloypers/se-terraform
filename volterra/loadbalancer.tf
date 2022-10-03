@@ -1,12 +1,26 @@
 resource "volterra_http_loadbalancer" "this" {
   name                            = "${var.name}-http-lb-tf"
   namespace                       = var.namespace
-  no_challenge                    = true
+  no_challenge                    = var.no_challenge
   domains                         = ["${var.name}.${var.domainSuffix}"]
-  disable_rate_limit              = true
-  service_policies_from_namespace = true
-  disable_waf                     = true
-  advertise_on_public_default_vip = true
+  disable_rate_limit              = var.disable_rate_limit
+  service_policies_from_namespace = var.service_policies_from_namespace
+  advertise_on_public_default_vip = var.advertise_on_public_default_vip
+  #need to add logic to choose how to advertise
+  advertise_custom {
+    advertise_where {
+      virtual_site {
+        network = "SITE_NETWORK_SERVICE"
+        virtual_site {
+          name = "g-willms-virtual-sites"
+          namespace = "g-willms"
+          tenant = "f5-amer-ent-qyyfhhfj"
+        }
+      }
+      use_default_port = true
+    }
+  }
+
 
   default_route_pools {
     pool {
