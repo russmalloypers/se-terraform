@@ -8,11 +8,11 @@ terraform {
 }
 
 provider "volterra" {
-  api_p12_file     = "/tmp/f5-amer-ent.console.ves.volterra.io.api-creds.p12"
+  api_p12_file     = var.api_p12_file_location
   url              = "https://f5-amer-ent.console.ves.volterra.io/api"
 }
 
-provider "aws" {
-  region  = var.awsRegion
-  profile = "se"
-}
+# provider "aws" {
+#   region  = var.awsRegion
+#   profile = "se"
+# }

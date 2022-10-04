@@ -91,6 +91,11 @@ variable "advertise_on_public_default_vip" {
   type = bool
   default = true
 }
+variable "api_p12_file_location" {
+  description = "location of p12"
+  type = string
+  default = "/tmp/f5-amer-ent.console.ves.volterra.io.api-creds.txt"
+}
 # variable "" {
 #   description = "description"
 #   type = 
