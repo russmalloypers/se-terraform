@@ -6,8 +6,8 @@
 
 #namespace = "g-willms"
 namespace = "r-malloy"
-lb_port = 443
+lb_port = 80
 origin_server_port = 8000
-name = "juice-shop-aks-russ"
+name = "juice-shop-aks-russ2"
 aks_service = "juice-shop"
 aks_namespace = "dev"

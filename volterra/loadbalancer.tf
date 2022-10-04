@@ -28,17 +28,22 @@ resource "volterra_http_loadbalancer" "this" {
     }
   }
 
-  https_auto_cert {
-    http_redirect = true
-    add_hsts = false
-    port = var.lb_port
-    tls_config {
-      default_security = true
-    }
-    no_mtls = true
-    default_header = true
-    enable_path_normalize = true
-    non_default_loadbalancer = true
+  # https_auto_cert {
+  #   http_redirect = true
+  #   add_hsts = false
+  #   port = var.lb_port
+  #   tls_config {
+  #     default_security = true
+  #   }
+  #   no_mtls = true
+  #   default_header = true
+  #   enable_path_normalize = true
+  #   non_default_loadbalancer = true
+  # }
+
+  http {
+    dns_volterra_managed = true
+    port                 = "80"
   }
 
   more_option {
@@ -66,10 +71,10 @@ resource "volterra_http_loadbalancer" "this" {
           name = "bot-defense"
         }
         mitigation {
-          block {
-            body = "string:///PHA+VGhpcyBpcyBhIGJvdCBkZWZlbnNlIGJsb2NrIHBhZ2UuPC9wPg=="
+          flag {
+            #body = "string:///PHA+VGhpcyBpcyBhIGJvdCBkZWZlbnNlIGJsb2NrIHBhZ2UuPC9wPg=="
             #<p>This is a bot defense block page.</p>"
-            status = "BadRequest"
+            #status = "BadRequest"
           }
         }
         path {
