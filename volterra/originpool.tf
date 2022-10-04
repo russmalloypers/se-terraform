@@ -35,6 +35,7 @@ resource "volterra_origin_pool" "this" {
           name = "g-willms-aks"
         }
       }
+      outside_network = true
     }
     labels = {
       created_by_tf = "true"
