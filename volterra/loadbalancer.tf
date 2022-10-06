@@ -6,21 +6,7 @@ resource "volterra_http_loadbalancer" "this" {
   disable_rate_limit              = var.disable_rate_limit
   service_policies_from_namespace = var.service_policies_from_namespace
   advertise_on_public_default_vip = var.advertise_on_public_default_vip
-  #need to add logic to choose how to advertise
-  # advertise_custom {
-  #   advertise_where {
-  #     virtual_site {
-  #       network = "SITE_NETWORK_SERVICE"
-  #       virtual_site {
-  #         name = "g-willms-virtual-sites"
-  #         namespace = "g-willms"
-  #         tenant = "f5-amer-ent-qyyfhhfj"
-  #       }
-  #     }
-  #     use_default_port = true
-  #   }
-  # }
-
+  #git
 
   default_route_pools {
     pool {
@@ -28,18 +14,7 @@ resource "volterra_http_loadbalancer" "this" {
     }
   }
 
-  # https_auto_cert {
-  #   http_redirect = true
-  #   add_hsts = false
-  #   port = var.lb_port
-  #   tls_config {
-  #     default_security = true
-  #   }
-  #   no_mtls = true
-  #   default_header = true
-  #   enable_path_normalize = true
-  #   non_default_loadbalancer = true
-  # }
+  #git
 
   http {
     dns_volterra_managed = true
