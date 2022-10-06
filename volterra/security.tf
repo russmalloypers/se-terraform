@@ -7,5 +7,5 @@ resource "volterra_app_firewall" "this" {
   use_default_blocking_page = true
   default_bot_setting = true
   default_detection_settings = true
-  blocking = true
+  monitoring = true
 }
