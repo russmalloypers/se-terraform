@@ -6,25 +6,6 @@ resource "volterra_origin_pool" "this" {
   loadbalancer_algorithm = "round_robin"
   description = "${var.name} origin pool deployed with terraform"
 
-  # origin_servers {
-  #   public_ip {
-  #     ip = data.aws_instance.one.public_ip
-  #   }
-  #   labels = {
-  #     az = data.aws_instance.one.availability_zone
-  #     created_by_tf = "true"
-  #   }
-  # }
-
-  # origin_servers {
-  #   public_ip {
-  #     ip = data.aws_instance.two.public_ip
-  #   }
-  #   labels = {
-  #     az = data.aws_instance.two.availability_zone
-  #     created_by_tf = "true"
-  #   }
-  # }
   origin_servers {
     k8s_service {
       service_name = "${var.aks_service}.${var.aks_namespace}"
@@ -47,7 +28,6 @@ resource "volterra_origin_pool" "this" {
   }
 
   port = var.origin_server_port
-  #no_tls = true
   labels = {
     created_by_tf = "true"
   }
